@@ -155,11 +155,11 @@ Preserve meaning exactly. Do not summarize."
 * Use The Token-Level Approach (e.g., BERTScore)
 ---
 
-#### **(B) Word Error Rate (WER)**
+#### **(B) Character Error Rate (CER)**
 
 Formula:
 
-WER=(S+D+I)/N
+CER=(S+D+I)/N
 
 Where:
 
@@ -168,44 +168,11 @@ Where:
 * I = insertions
 * N = total words in original
 
-#### apply the clipping function
-
-clipped_WER=min(WER, 1.0)
-
-** clip
-
-clipped_WER= min(0.8,0.1)
-
----
-
-#### **(C) Sequential Similarity **
-
-Longest Common Subsequence (ROUGE-L) 
-
-
-#### **(D) Hallucination Score (LLM-Based)**
-
-Prompt:
-
-"Compare the original transcript and the ASR output.
-
-Score hallucination from 0 to 1:
-0 = no hallucination
-1 = severe hallucination
-
-Return only a number."
-
 ---
 
 #### **(E) Final Match Score**
 
-match_score =
-    (0.35 × semantic_similarity)   # e.g. sentence-transformers / BERTScore
-+ (0.30 × (1 - clipped_WER))    # clamp WER to [0,1]
-+ (0.20 × sequence_similarity)  # e.g. ROUGE-L or sequence matcher ratio
-+ (0.15 × (1 - hallucination_score))
-
-clipped_WER = min(WER, 1.0)       # prevents negative contributions
+match_score = (1-CER)*100 %
 
 ---
 
