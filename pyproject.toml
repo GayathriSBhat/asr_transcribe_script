@@ -1,0 +1,36 @@
+[project]
+name = "gemnai"
+version = "0.1.0"
+description = "ASR transcription pipeline"
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    # Core dataset handling (STRICT to avoid torchcodec issues)
+    "datasets>=2.16.0,<3.0.0",
+
+    # Audio processing
+    "soundfile>=0.12.1,<1.0.0",
+    "numpy>=1.24,<2.0.0",
+
+    # Utilities
+    "tqdm>=4.66,<5.0.0",
+    "pandas>=2.0.0,<3.0.0",
+    "openpyxl>=3.1.0,<4.0.0",
+
+    # Evaluation metrics
+    "jiwer>=3.0.0,<4.0.0",
+    "rouge-score>=0.1.2,<1.0.0",
+    "bert-score>=0.3.13,<1.0.0",
+
+    # Retry / robustness
+    "tenacity>=9.0.0,<10.0.0",
+
+    # LLM APIs
+    "openai>=1.0.0,<2.0.0",
+    "google-genai>=1.0.0,<2.0.0",
+
+    # Embeddings / models
+    "sentence-transformers>=2.0.0,<3.0.0",
+    "transformers>=4.0.0,<5.0.0",
+]
